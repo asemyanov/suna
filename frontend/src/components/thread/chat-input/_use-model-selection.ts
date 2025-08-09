@@ -34,31 +34,26 @@ export const MODELS = {
   // Free tier models (available to all users)
   'bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0': {
     tier: 'free',
-    priority: 100,
-    recommended: true,
-    lowQuality: false
-  },
-
-  // 'openrouter/moonshotai/kimi-k2': { 
-  //   tier: 'free', 
-  //   priority: 96,
-  //   recommended: false,
-  //   lowQuality: false
-  // },
-
-  'openrouter/google/gemini-2.5-pro': { 
-    tier: 'free', 
     priority: 98,
     recommended: true,
     lowQuality: false
   },
 
-  'openrouter/z-ai/glm-4.5': { 
+  'openrouter/google/gemini-2.5-pro': { 
     tier: 'free', 
-    priority: 95,
+    priority: 100,
+    recommended: true,
+    lowQuality: false
+  },
+
+
+  'openrouter/openai/gpt-oss-120b': { 
+    tier: 'free', 
+    priority: 97,
     recommended: false,
     lowQuality: false
   },
+
 
   // Premium/Paid tier models (require subscription)
   'openrouter/x-ai/grok-4': { 
@@ -68,9 +63,9 @@ export const MODELS = {
     lowQuality: false
   },
 
-  'openrouter/openai/o4-mini-high': { 
+  'openrouter/openai/gpt-5': { 
     tier: 'premium', 
-    priority: 94,
+    priority: 96,
     recommended: false,
     lowQuality: false
   },
