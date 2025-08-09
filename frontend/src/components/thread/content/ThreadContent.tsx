@@ -332,7 +332,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
     project,
     debugMode = false,
     isPreviewMode = false,
-    agentName = 'Suna',
+    agentName = 'ProblemX',
     agentAvatar = <KortixLogo size={16} />,
     emptyStateComponent,
     threadMetadata,
@@ -409,7 +409,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
             };
         }
         return {
-            name: agentName || 'Suna',
+            name: agentName || 'ProblemX',
             avatar: agentAvatar
         };
     }, [threadMetadata, displayMessages, agentName, agentAvatar]);
