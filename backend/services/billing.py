@@ -504,7 +504,7 @@ def calculate_token_cost(prompt_tokens: int, completion_tokens: int, model: str)
                             message_cost = prompt_token_cost + completion_token_cost
                             break
                     except Exception as e:
-                        logger.debug(f"Failed to get pricing for model variation {model_name}: {str(e)}")
+                        # Only log once per model to avoid spam
                         continue
                 
                 if message_cost is None:

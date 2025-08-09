@@ -61,7 +61,7 @@ export function AgentHeader({
   const handleNameChange = (value: string) => {
     if (!isNameEditable && isSunaAgent) {
       toast.error("Name cannot be edited", {
-        description: "Suna's name is managed centrally and cannot be changed.",
+        description: "ProblemX.AI's name is managed centrally and cannot be changed.",
       });
       return;
     }

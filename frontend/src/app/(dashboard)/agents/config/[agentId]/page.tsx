@@ -109,12 +109,12 @@ export default function AgentConfigurationPage() {
     
     if (isSunaAgent) {
       if (restrictions.name_editable === false && formData.name !== originalData.name) {
-        toast.error("Suna's name cannot be modified.");
+        toast.error("ProblemX.AI's name cannot be modified.");
         return;
       }
 
       if (restrictions.tools_editable === false && JSON.stringify(formData.agentpress_tools) !== JSON.stringify(originalData.agentpress_tools)) {
-        toast.error("Suna's default tools cannot be modified.");
+        toast.error("ProblemX.AI's default tools cannot be modified.");
         return;
       }
     }
@@ -208,7 +208,7 @@ export default function AgentConfigurationPage() {
     if (isSunaAgent) {
       console.log('❌ Suna agent system prompt edit blocked');
       toast.error("System prompt cannot be edited", {
-        description: "Suna's system prompt is managed centrally and cannot be changed.",
+        description: "ProblemX.AI's system prompt is managed centrally and cannot be changed.",
       });
       return;
     }
@@ -272,7 +272,7 @@ export default function AgentConfigurationPage() {
     
     if (isSunaAgent && restrictions.tools_editable === false) {
       console.log('❌ Suna agent tools edit blocked');
-      toast.error("Suna's default tools cannot be modified.");
+      toast.error("ProblemX.AI's default tools cannot be modified.");
       return;
     }
     
@@ -504,12 +504,12 @@ export default function AgentConfigurationPage() {
                         >
                           {isSaving ? (
                             <>
-                              <Loader2 className="h-3 w-3 animate-spin" />
+                              <Loader2 className="h-3 w-3 animate-spin mr-2" />
                               Saving...
                             </>
                           ) : (
                             <>
-                              <Save className="h-3 w-3" />
+                              <Save className="h-3 w-3 mr-2" />
                               Save
                             </>
                           )}

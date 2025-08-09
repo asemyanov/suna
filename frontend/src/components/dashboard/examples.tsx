@@ -34,104 +34,99 @@ type PromptExample = {
 
 const allPrompts: PromptExample[] = [
   {
-    title: 'Market research dashboard',
-    query: 'Create a comprehensive market research dashboard analyzing industry trends, customer segments, and competitive landscape. Include data visualization and actionable recommendations.',
-    icon: <BarChart3 className="text-green-700 dark:text-green-400" size={16} />,
-  },
-  {
-    title: 'Recommendation engine',
-    query: 'Develop a recommendation engine for personalized product suggestions. Include collaborative filtering, content-based filtering, and hybrid approaches with evaluation metrics.',
-    icon: <Bot className="text-blue-700 dark:text-blue-400" size={16} />,
-  },
-  {
-    title: 'Go-to-market strategy',
-    query: 'Develop a comprehensive go-to-market strategy for a new product. Include market sizing, customer acquisition channels, pricing strategy, and launch timeline.',
-    icon: <Briefcase className="text-rose-700 dark:text-rose-400" size={16} />,
-  },
-  {
-    title: 'Data pipeline automation',
-    query: 'Create an automated data pipeline for ETL processes. Include data validation, error handling, monitoring, and scalable architecture design.',
-    icon: <Settings className="text-purple-700 dark:text-purple-400" size={16} />,
-  },
-  {
-    title: 'Productivity system',
-    query: 'Design a comprehensive personal productivity system including task management, goal tracking, habit formation, and time blocking. Create templates and workflows for daily, weekly, and monthly planning.',
-    icon: <Target className="text-orange-700 dark:text-orange-400" size={16} />,
-  },
-  {
-    title: 'Content marketing plan',
-    query: 'Develop a 6-month content marketing strategy including blog posts, social media, email campaigns, and SEO optimization. Include content calendar and performance metrics.',
-    icon: <PenTool className="text-indigo-700 dark:text-indigo-400" size={16} />,
-  },
-  {
-    title: 'Portfolio analysis',
-    query: 'Create a personal investment portfolio analysis tool with risk assessment, diversification recommendations, and performance tracking against market benchmarks.',
-    icon: <DollarSign className="text-emerald-700 dark:text-emerald-400" size={16} />,
-  },
-  {
-    title: 'Customer journey map',
-    query: 'Map the complete customer journey from awareness to advocacy. Include touchpoints, pain points, emotions, and optimization opportunities at each stage.',
-    icon: <Users className="text-cyan-700 dark:text-cyan-400" size={16} />,
-  },
-  {
-    title: 'A/B testing framework',
-    query: 'Design a comprehensive A/B testing framework including hypothesis formation, statistical significance calculations, and result interpretation guidelines.',
-    icon: <TrendingUp className="text-teal-700 dark:text-teal-400" size={16} />,
-  },
-  {
-    title: 'Code review automation',
-    query: 'Create an automated code review system that checks for security vulnerabilities, performance issues, and coding standards. Include integration with CI/CD pipelines.',
-    icon: <Code className="text-violet-700 dark:text-violet-400" size={16} />,
-  },
-  {
-    title: 'Risk assessment matrix',
-    query: 'Develop a comprehensive risk assessment framework for business operations including risk identification, probability analysis, impact evaluation, and mitigation strategies.',
-    icon: <Shield className="text-red-700 dark:text-red-400" size={16} />,
-  },
-  {
-    title: 'Learning path generator',
-    query: 'Create a personalized learning path generator that adapts to individual goals, current skill level, and preferred learning style. Include progress tracking and resource recommendations.',
-    icon: <Brain className="text-pink-700 dark:text-pink-400" size={16} />,
-  },
-  {
-    title: 'Social media automation',
-    query: 'Design a social media automation system including content scheduling, engagement tracking, hashtag optimization, and performance analytics across multiple platforms.',
-    icon: <Globe className="text-blue-600 dark:text-blue-300" size={16} />,
-  },
-  {
-    title: 'Health tracking dashboard',
-    query: 'Build a comprehensive health tracking dashboard integrating fitness data, nutrition logging, sleep patterns, and medical records with actionable insights and goal setting.',
-    icon: <Heart className="text-red-600 dark:text-red-300" size={16} />,
-  },
-  {
-    title: 'Project automation',
-    query: 'Create an intelligent project management system with automatic task assignment, deadline tracking, resource allocation, and team communication integration.',
+    title: 'Patient Scheduling and Reminders',
+    query: 'Automate appointment scheduling, send intelligent reminders, and handle cancellations or rescheduling requests through natural language processing.',
     icon: <Calendar className="text-amber-700 dark:text-amber-400" size={16} />,
   },
   {
-    title: 'Sales funnel optimizer',
-    query: 'Analyze and optimize the entire sales funnel from lead generation to conversion. Include lead scoring, nurture sequences, and conversion rate optimization strategies.',
-    icon: <Zap className="text-yellow-600 dark:text-yellow-300" size={16} />,
+    title: 'Insurance Prior Authorization',
+    query: 'Streamline insurance verification processes and automate prior authorization requests using intelligent document processing and real-time payer integration.',
+    icon: <Shield className="text-red-700 dark:text-red-400" size={16} />,
   },
   {
-    title: 'Startup pitch deck',
-    query: 'Generate a compelling startup pitch deck including problem statement, solution overview, market analysis, business model, financial projections, and funding requirements.',
-    icon: <Rocket className="text-orange-600 dark:text-orange-300" size={16} />,
+    title: 'Medical Coding and Billing Audit',
+    query: 'Automatically assign ICD-10 and CPT codes from clinical documentation while conducting real-time billing audits to ensure accuracy and compliance.',
+    icon: <Code className="text-violet-700 dark:text-violet-400" size={16} />,
   },
   {
-    title: 'Photography workflow',
-    query: 'Design an end-to-end photography workflow including shoot planning, file organization, editing presets, client delivery, and portfolio management systems.',
-    icon: <Camera className="text-slate-700 dark:text-slate-400" size={16} />,
+    title: 'Patients Recovery EHR Analysis',
+    query: 'Identify patterns, track treatment efficacy, and generate comprehensive clinical insights for improved care coordination and decision support.',
+    icon: <Heart className="text-red-600 dark:text-red-300" size={16} />,
   },
   {
-    title: 'Supply chain analysis',
-    query: 'Create a supply chain optimization analysis including vendor evaluation, cost reduction opportunities, risk mitigation, and inventory management strategies.',
-    icon: <Briefcase className="text-stone-700 dark:text-stone-400" size={16} />,
+    title: 'Post-Op Recovery Analysis',
+    query: 'Compare post-op recovery metrics against 100 similar cases and flag any protocol deviations.',
+    icon: <TrendingUp className="text-teal-700 dark:text-teal-400" size={16} />,
   },
   {
-    title: 'UX research framework',
-    query: 'Develop a comprehensive UX research framework including user interviews, usability testing, persona development, and data-driven design recommendations.',
+    title: 'Create Pre-op Guidelines Handout',
+    query: 'Compile latest pre-op guidelines from the past 6 months and create a clinical handout highlighting pre-op workflow impacts and protocol changes.',
+    icon: <PenTool className="text-indigo-700 dark:text-indigo-400" size={16} />,
+  },
+  {
+    title: 'Under-Researched Biomarkers',
+    query: "Identify top 5 under-researched Alzheimer's biomarkers since 2020 using PubMed analysis. Generate a comprehensive report highlighting research gaps and potential clinical applications.",
+    icon: <Brain className="text-pink-700 dark:text-pink-400" size={16} />,
+  },
+  {
+    title: 'NIH Grant Justification Section',
+    query: "Generate a comprehensive justification section analyzing success rates of similar Parkinson's research proposals for NIH grant applications. Include historical funding trends, priority areas, and strategic positioning recommendations.",
+    icon: <DollarSign className="text-emerald-700 dark:text-emerald-400" size={16} />,
+  },
+  {
+    title: 'Predict Q3 ER Admissions',
+    query: "Analyze historical admission data and local flu trends to generate staffing recommendations for the upcoming quarter's emergency room patient volume.",
+    icon: <TrendingUp className="text-teal-700 dark:text-teal-400" size={16} />,
+  },
+  {
+    title: 'Medicare ACO Renewal Compliance',
+    query: 'Generate a comprehensive compliance readiness report for Medicare ACO renewal, analyzing current documentation gaps and producing an actionable priority list with implementation timelines.',
+    icon: <Shield className="text-red-700 dark:text-red-400" size={16} />,
+  },
+  {
+    title: 'Surgical Outcomes Benchmarks',
+    query: 'Compare surgical outcomes against top 10 US hospitals, analyze performance gaps, and create a comprehensive quality improvement roadmap with actionable steps to enhance surgical standards and patient outcomes.',
+    icon: <Target className="text-orange-700 dark:text-orange-400" size={16} />,
+  },
+  {
+    title: 'Dashboard: Current Capacity vs Surge',
+    query: 'Interactive dashboard that compares current hospital capacity with CDC COVID surge prediction models, enabling healthcare administrators to visualize resource allocation needs and prepare for potential patient influxes.',
+    icon: <BarChart3 className="text-green-700 dark:text-green-400" size={16} />,
+  },
+  {
+    title: 'Analyze Clinical Trial Data',
+    query: 'Analyze a dataset of clinical trial results to identify statistically significant outcomes and potential adverse effects. Generate a summary report for a medical journal.',
+    icon: <Bot className="text-blue-700 dark:text-blue-400" size={16} />,
+  },
+  {
+    title: 'Draft a Patient Discharge Summary',
+    query: 'Draft a comprehensive discharge summary for a patient recovering from pneumonia, including medication reconciliation, follow-up appointments, and lifestyle recommendations.',
+    icon: <Briefcase className="text-rose-700 dark:text-rose-400" size={16} />,
+  },
+  {
+    title: 'Develop a Clinical Pathway for Diabetes',
+    query: 'Develop a clinical pathway for managing Type 2 Diabetes, from diagnosis to long-term care. Include decision trees for treatment options based on patient characteristics.',
+    icon: <Settings className="text-purple-700 dark:text-purple-400" size={16} />,
+  },
+  {
+    title: 'Generate a Literature Review on Chronic Pain',
+    query: 'Generate a literature review on the latest non-pharmacological treatments for chronic pain, summarizing findings from the top 10 most-cited papers in the last two years.',
+    icon: <PenTool className="text-indigo-700 dark:text-indigo-400" size={16} />,
+  },
+  {
+    title: 'Create a Medical Staffing Schedule',
+    query: 'Create a fair and balanced 4-week rotating schedule for a team of 15 nurses and 5 doctors in a busy emergency department, considering shift preferences and required certifications.',
+    icon: <Users className="text-cyan-700 dark:text-cyan-400" size={16} />,
+  },
+  {
+    title: 'Summarize a Medical Research Paper',
+    query: 'Summarize the key findings, methodology, and conclusions of the attached medical research paper on CAR-T cell therapy for a presentation to the oncology department.',
     icon: <Sparkles className="text-fuchsia-700 dark:text-fuchsia-400" size={16} />,
+  },
+  {
+    title: 'Develop a Health and Wellness Program',
+    query: 'Design a 12-week health and wellness program for a corporate client, focusing on stress reduction, nutrition, and physical activity. Include weekly themes and measurable goals.',
+    icon: <Heart className="text-red-600 dark:text-red-300" size={16} />,
   },
 ];
 

@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Create Agent | Kortix Suna',
+  title: 'Create Agent | ProblemX.AI',
   description: 'Create an agent',
   openGraph: {
-    title: 'Create Agent | Kortix Suna',
+    title: 'Create Agent | ProblemX.AI',
     description: 'Create an agent',
     type: 'website',
   },

@@ -241,7 +241,7 @@ export default function APIKeysPage() {
             <h1 className="text-2xl font-bold">API Keys</h1>
           </div>
           <p className="text-muted-foreground">
-            Manage your API keys for programmatic access to Suna
+            Manage your API keys for programmatic access to ProblemX.AI
           </p>
         </div>
 
@@ -383,7 +383,7 @@ export default function APIKeysPage() {
               <Key className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-medium mb-2">No API keys yet</h3>
               <p className="text-muted-foreground mb-4">
-                Create your first API key pair to start using the Suna API
+                Create your first API key pair to start using the ProblemX.AI API
                 programmatically. Each key includes a public identifier and
                 secret for secure authentication.
               </p>
