@@ -29,7 +29,7 @@ export const AgentToolsConfiguration = ({ tools, onToolsChange, disabled = false
   const handleToolToggle = (toolName: string, enabled: boolean) => {
     if (disabled && isSunaAgent) {
       toast.error("Tools cannot be modified", {
-        description: "Suna's default tools are managed centrally and cannot be changed.",
+        description: "ProblemX.AI's default tools are managed centrally and cannot be changed.",
       });
       return;
     }

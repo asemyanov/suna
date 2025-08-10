@@ -30,11 +30,10 @@ export function UseCasesSection() {
     >
       <SectionHeader>
         <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-center text-balance">
-          See Suna in action
+          See ProblemX in action
         </h2>
         <p className="text-muted-foreground text-center text-balance font-medium">
-          Explore real-world examples of how Suna completes complex tasks
-          autonomously
+        AI uses its own computer like a human operator would work with your existing EMR systems, documentation, and clinical tools.
         </p>
       </SectionHeader>
 
@@ -59,7 +58,7 @@ export function UseCasesSection() {
                       {useCase.icon}
                     </svg>
                   </div>
-                  <h3 className="text-lg font-medium line-clamp-1">
+                  <h3 className="text-lg font-medium line-clamp-2">
                     {useCase.title}
                   </h3>
                 </div>

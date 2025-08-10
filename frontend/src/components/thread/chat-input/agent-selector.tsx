@@ -101,19 +101,19 @@ export const AgentSelector: React.FC<AgentSelectorProps> = ({
     }
     
     if (selectedAgentId !== undefined) {
-      console.warn('Agent with ID', selectedAgentId, 'not found, falling back to Suna');
+      console.warn('Agent with ID', selectedAgentId, 'not found, falling back to ProblemX.AI');
     }
     
     const defaultAgent = allAgents[0];
     const isDefaultAgentSuna = defaultAgent?.metadata?.is_suna_default || false;
     return {
-      name: defaultAgent?.name || 'Suna',
+      name: defaultAgent?.name || 'ProblemX.AI',
       icon: isDefaultAgentSuna ? <KortixLogo size={16} /> : (defaultAgent?.icon || <KortixLogo size={16} />)
     };
   };
 
   const handleAgentSelect = (agentId: string | undefined) => {
-    console.log('Agent selected:', agentId === undefined ? 'Suna (default)' : agentId);
+    console.log('Agent selected:', agentId === undefined ? 'ProblemX.AI (default)' : agentId);
     onAgentSelect?.(agentId);
     setIsOpen(false);
   };

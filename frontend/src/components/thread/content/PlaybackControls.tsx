@@ -487,7 +487,7 @@ export const PlaybackControls = ({
                 <Link href="/">
                   <img
                     src="/kortix-symbol.svg"
-                    alt="Kortix"
+                    alt="ProblemX"
                     width={16}
                     height={16}
                     className="object-contain"

@@ -127,69 +127,61 @@ export function Navbar() {
               : 'shadow-none px-7',
           )}
         >
-          <div className="flex h-[56px] items-center p-4">
-            {/* Left Section - Logo */}
-            <div className="flex items-center justify-start" style={{ width: '200px' }}>
-              <Link href="/" className="flex items-center gap-3">
-                <Image
-                  src={logoSrc}
-                  alt="Kortix Logo"
-                  width={100}
-                  height={18}
-                  priority
-                /> 
-              </Link>
-            </div>
+          <div className="flex h-[56px] items-center justify-between p-4">
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src={logoSrc}
+                alt="ProblemX.AI Logo"
+                width={140}
+                height={22}
+                priority
+                className="h-5"
+              /> 
+            </Link>
 
             {/* Center Section - Navigation Menu */}
             <div className="flex items-center justify-center flex-grow">
               <NavMenu />
             </div>
 
-            {/* Right Section - Actions */}
-            <div className="flex items-center justify-end" style={{ width: '200px' }}>
-              <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0">
-                <div className="flex items-center space-x-3">
-                  <Link
-                    href="https://github.com/kortix-ai/suna"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hidden md:flex items-center gap-1.5 h-7 px-2.5 text-xs font-medium rounded-full bg-transparent text-muted-foreground/60 hover:text-muted-foreground hover:bg-accent/30 transition-all duration-200"
-                    aria-label="GitHub Repository"
-                  >
-                    <Github className="size-3.5" />
-                    <span className={`text-xs font-medium transition-opacity duration-200 ${starsLoading ? 'opacity-50' : 'opacity-100'}`}>
-                      {formattedStars}
-                    </span>
-                  </Link>
-                  {user ? (
-                    <Link
-                      className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
-                      href="/dashboard"
-                    >
-                      Dashboard
-                    </Link>
-                  ) : (
-                    <Link
-                      className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
-                      href="/auth"
-                    >
-                      Try free
-                    </Link>
-                  )}
-                </div>
-                <ThemeToggle />
-                <button
-                  className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
-                  onClick={toggleDrawer}
+            <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0">
+              <div className="flex items-center space-x-3">
+                {/* <Link
+                  href="https://github.com/problemx-ai/problemx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden md:flex items-center justify-center h-8 px-3 text-sm font-normal tracking-wide rounded-full text-primary hover:text-primary/80 transition-colors"
+                  aria-label="GitHub"
                 >
-                  {isDrawerOpen ? (
-                    <X className="size-5" />
-                  ) : (
-                    <Menu className="size-5" />
-                  )}
-                </button>
+                  <Github className="size-[18px]" />
+                </Link> */}
+                {user ? (
+                  <Link
+                    className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
+                    href="/dashboard"
+                  >
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link
+                    className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
+                    href="/auth"
+                  >
+                    Get started
+                  </Link>
+                )}
               </div>
+              <ThemeToggle />
+              <button
+                className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
+                onClick={toggleDrawer}
+              >
+                {isDrawerOpen ? (
+                  <X className="size-5" />
+                ) : (
+                  <Menu className="size-5" />
+                )}
+              </button>
             </div>
           </div>
         </div>
@@ -222,14 +214,11 @@ export function Navbar() {
                   <Link href="/" className="flex items-center gap-3">
                     <Image
                       src={logoSrc}
-                      alt="Kortix Logo"
+                      alt="ProblemX.AI Logo"
                       width={120}
                       height={22}
                       priority
                     />
-                    <span className="font-medium text-primary text-sm">
-                      / Suna
-                    </span>
                   </Link>
                   <button
                     onClick={toggleDrawer}
