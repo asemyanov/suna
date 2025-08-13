@@ -16,6 +16,8 @@ class SandboxDeployTool(SandboxToolsBase):
         self.workspace_path = "/workspace"  # Ensure we're always operating in /workspace
         self.cloudflare_api_token = os.getenv("CLOUDFLARE_API_TOKEN")
 
+        self.base_domain = os.getenv("CLOUDFLARE_BASE_DOMAIN")
+
     def clean_path(self, path: str) -> str:
         """Clean and normalize a path to be relative to /workspace"""
         return clean_path(path, self.workspace_path)
@@ -24,13 +26,13 @@ class SandboxDeployTool(SandboxToolsBase):
         "type": "function",
         "function": {
             "name": "deploy",
-            "description": "Deploy a static website (HTML+CSS+JS) from a directory in the sandbox to Cloudflare Pages. Only use this tool when permanent deployment to a production environment is needed. The directory path must be relative to /workspace. The website will be deployed to {name}.kortix.cloud.",
+            "description": "Deploy a static website (HTML+CSS+JS) from a directory in the sandbox to Cloudflare Pages. Only use this tool when permanent deployment to a production environment is needed. The directory path must be relative to /workspace. The website will be deployed to {name}.{CLOUDFLARE_BASE_DOMAIN}.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "Name for the deployment, will be used in the URL as {name}.kortix.cloud"
+                        "description": "Name for the deployment, will be available at {name}.{CLOUDFLARE_BASE_DOMAIN}."
                     },
                     "directory_path": {
                         "type": "string",
@@ -63,7 +65,7 @@ class SandboxDeployTool(SandboxToolsBase):
         Only use this tool when permanent deployment to a production environment is needed.
         
         Args:
-            name: Name for the deployment, will be used in the URL as {name}.kortix.cloud
+            name: Name for the deployment, will be used in the URL as {name}.{CLOUDFLARE_BASE_DOMAIN}
             directory_path: Path to the directory to deploy, relative to /workspace
             
         Returns:

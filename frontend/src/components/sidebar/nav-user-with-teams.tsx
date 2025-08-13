@@ -292,7 +292,7 @@ export function NavUserWithTeams({
                     Billing
                   </Link>
                 </DropdownMenuItem>
-                {!flagLoading && customAgentsEnabled && (
+                {/* {!flagLoading && customAgentsEnabled && (
                   <DropdownMenuItem asChild>
                     <Link href="/settings/credentials">
                       <Plug className="h-4 w-4" />
@@ -307,7 +307,7 @@ export function NavUserWithTeams({
                       API Keys (Admin)
                     </Link>
                   </DropdownMenuItem>
-                )}
+                )} */}
                 {isLocalMode() && <DropdownMenuItem asChild>
                   <Link href="/settings/env-manager">
                     <KeyRound className="h-4 w-4" />

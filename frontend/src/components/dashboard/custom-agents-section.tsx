@@ -132,14 +132,14 @@ export function CustomAgentsSection({ onAgentSelect }: CustomAgentsSectionProps)
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="relative col-span-1 sm:col-span-2 lg:col-span-2 overflow-hidden rounded-3xl flex items-center justify-center border bg-background">
             <div className="relative px-8 py-16 text-start">
-              <div className="mx-auto max-w-3xl space-y-6">
-                <h2 className="text-4xl font-semibold text-foreground mb-2">
-                  Custom Agents
-                </h2>
-                <p className="text-muted-foreground text-sm">
-                  Specialized AI agents built by the Kortix team for specific tasks
-                </p>
-              </div>
+                <div className="mx-auto max-w-3xl space-y-6">
+                    <h2 className="text-4xl font-semibold text-foreground mb-2">
+                        Custom Agents
+                    </h2>
+                    <p className="text-muted-foreground text-sm">
+                        Specialized AI agents for specific tasks
+                    </p>
+                </div>
             </div>
             <Ripple/>
           </div>

@@ -72,54 +72,14 @@ export function AgentHeader({
   const restrictions = agentMetadata?.restrictions || {};
   const isNameEditable = !isViewingOldVersion && (restrictions.name_editable !== false);
   
-  const startEditing = () => {
-    setEditName(displayData.name);
-    setIsEditing(true);
-    setTimeout(() => {
-      inputRef.current?.focus();
-      inputRef.current?.select();
-    }, 0);
-  };
-
-  const cancelEditing = () => {
-    setIsEditing(false);
-    setEditName(displayData.name);
-  };
-
-  const saveNewName = async () => {
-    if (editName.trim() === '') {
-      setEditName(displayData.name);
-      setIsEditing(false);
+  const handleNameChange = (value: string) => {
+    if (!isNameEditable && isSunaAgent) {
+      toast.error("Name cannot be edited", {
+        description: "MEVO's name is managed centrally and cannot be changed.",
+      });
       return;
     }
-
-    if (editName !== displayData.name) {
-      if (!isNameEditable && isSunaAgent) {
-        toast.error("Name cannot be edited", {
-          description: "Suna's name is managed centrally and cannot be changed.",
-        });
-        setEditName(displayData.name);
-        setIsEditing(false);
-        return;
-      }
-      
-      // Use dedicated save handler if available, otherwise fallback to generic onFieldChange
-      if (onNameSave) {
-        await onNameSave(editName);
-      } else {
-        onFieldChange('name', editName);
-      }
-    }
-
-    setIsEditing(false);
-  };
-
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      saveNewName();
-    } else if (e.key === 'Escape') {
-      cancelEditing();
-    }
+    onFieldChange('name', value);
   };
 
   const handleImageUpdate = (url: string | null) => {

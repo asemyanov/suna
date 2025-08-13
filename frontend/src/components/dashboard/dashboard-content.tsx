@@ -75,8 +75,8 @@ export function DashboardContent() {
   const selectedAgent = selectedAgentId
     ? agents.find(agent => agent.agent_id === selectedAgentId)
     : null;
-  const displayName = selectedAgent?.name || 'Suna';
-  const agentAvatar = undefined;
+  const displayName = selectedAgent?.name || 'MEVO';
+  const agentAvatar = selectedAgent?.avatar;
   const isSunaAgent = selectedAgent?.metadata?.is_suna_default || false;
 
   const threadQuery = useThreadQuery(initiatedThreadId || '');
@@ -214,40 +214,61 @@ export function DashboardContent() {
   return (
     <>
       <ModalProviders />
-      <div className="flex flex-col h-screen w-full overflow-hidden">
-        <div className="flex-1 overflow-y-auto">
-          <div className="min-h-full flex flex-col">
-            {customAgentsEnabled && (
-              <div className="flex justify-center px-4 pt-4 md:pt-8">
-                <ReleaseBadge text="Custom Agents, Playbooks, and more!" link="/agents?tab=my-agents" />
-              </div>
-            )}
-            <div className="flex-1 flex items-center justify-center px-4 py-8">
-              <div className="w-full max-w-[650px] flex flex-col items-center justify-center space-y-4 md:space-y-6">
-                <div className="flex flex-col items-center text-center w-full">
-                  <p className="tracking-tight text-2xl md:text-3xl font-normal text-muted-foreground/80">
-                    What would you like to do today?
-                  </p>
-                </div>
-                <div className="w-full">
-                  <ChatInput
-                    ref={chatInputRef}
-                    onSubmit={handleSubmit}
-                    loading={isSubmitting}
-                    placeholder="Describe what you need help with..."
-                    value={inputValue}
-                    onChange={setInputValue}
-                    hideAttachments={false}
-                    selectedAgentId={selectedAgentId}
-                    onAgentSelect={setSelectedAgent}
-                    enableAdvancedConfig={true}
-                    onConfigureAgent={(agentId) => router.push(`/agents/config/${agentId}`)}
-                  />
-                </div>
-                <div className="w-full">
-                  <Examples onSelectPrompt={setInputValue} count={isMobile ? 3 : 4} />
-                </div>
-              </div>
+      <div className="flex flex-col h-screen w-full overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-700 scrollbar-track-transparent">
+        {isMobile && (
+          <div className="absolute top-4 left-4 z-10">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setOpenMobile(true)}
+                >
+                  <Menu className="h-4 w-4" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Open menu</TooltipContent>
+            </Tooltip>
+          </div>
+        )}
+        {customAgentsEnabled && (
+          <div className="absolute top-20 left-1/2 -translate-x-1/2 z-10">
+            <ReleaseBadge text="Custom Agents, Playbooks, and more!" link="/agents?tab=my-agents" />
+          </div>
+        )}
+        <div className={cn(
+          "flex flex-col min-h-screen px-4 items-center justify-center",
+          // customAgentsEnabled ? "items-center pt-20" : "items-center justify-center"
+        )}>
+          <div className="w-[650px] max-w-[90%]">
+            <div className="flex flex-col items-center text-center w-full">
+              <p className="tracking-tight text-3xl font-normal text-muted-foreground/80 mt-2">
+                What would you like to do today?
+              </p>
+            </div>
+            <div className={cn(
+              "w-full mb-2",
+              "max-w-full",
+              "sm:max-w-3xl"
+            )}>
+              <ChatInput
+                ref={chatInputRef}
+                onSubmit={handleSubmit}
+                loading={isSubmitting}
+                placeholder="Describe what you need help with..."
+                value={inputValue}
+                onChange={setInputValue}
+                hideAttachments={false}
+                selectedAgentId={selectedAgentId}
+                onAgentSelect={setSelectedAgent}
+                enableAdvancedConfig={customAgentsEnabled}
+                onConfigureAgent={(agentId) => router.push(`/agents/config/${agentId}`)}
+              />
+            </div>
+            <div className="w-full pt-4">
+              <Examples onSelectPrompt={setInputValue} count={4} />
             </div>
             {enabledEnvironment && customAgentsEnabled && (
               <div className="w-full px-4 pb-8">

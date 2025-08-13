@@ -47,7 +47,7 @@ class AgentConfig:
     stream: bool
     native_max_auto_continues: int = 25
     max_iterations: int = 100
-    model_name: str = "anthropic/claude-sonnet-4-20250514"
+    model_name: str = "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0"
     enable_thinking: Optional[bool] = False
     reasoning_effort: Optional[str] = 'low'
     enable_context_manager: bool = True
@@ -701,7 +701,7 @@ async def run_agent(
     thread_manager: Optional[ThreadManager] = None,
     native_max_auto_continues: int = 25,
     max_iterations: int = 100,
-    model_name: str = "anthropic/claude-sonnet-4-20250514",
+    model_name: str = "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
     enable_thinking: Optional[bool] = False,
     reasoning_effort: Optional[str] = 'low',
     enable_context_manager: bool = True,
@@ -711,10 +711,10 @@ async def run_agent(
     target_agent_id: Optional[str] = None
 ):
     effective_model = model_name
-    if model_name == "anthropic/claude-sonnet-4-20250514" and agent_config and agent_config.get('model'):
+    if model_name == "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0" and agent_config and agent_config.get('model'):
         effective_model = agent_config['model']
         logger.info(f"Using model from agent config: {effective_model} (no user selection)")
-    elif model_name != "anthropic/claude-sonnet-4-20250514":
+    elif model_name != "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0":
         logger.info(f"Using user-selected model: {effective_model}")
     else:
         logger.info(f"Using default model: {effective_model}")

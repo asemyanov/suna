@@ -1,5 +1,15 @@
 # Master model configuration - single source of truth
 MODELS = {
+
+    # "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0": {
+    #     "aliases": ["claude-sonnet-4"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 3.00,
+    #         "output_cost_per_million_tokens": 15.00
+    #     },
+    #     "tier_availability": ["free", "paid"]
+    # },   
+    
     # Free tier models
     "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0": {
         "aliases": ["Expert 🤑💰💸"],
@@ -27,13 +37,14 @@ MODELS = {
             "output_cost_per_million_tokens": 2.00
         },
         "tier_availability": ["free", "paid"]
+        "tier_availability": ["free", "paid"]
     },
 
     "openrouter/openai/gpt-5-mini": {
         "aliases": ["GPT-5-M 🤖💰"],
         "pricing": {
-            "input_cost_per_million_tokens": 0.25,
-            "output_cost_per_million_tokens": 2.00
+            "input_cost_per_million_tokens": 1.1,
+            "output_cost_per_million_tokens": 4.4
         },
         "tier_availability": ["free", "paid"]
     },
@@ -53,15 +64,16 @@ MODELS = {
         "aliases": ["Grok 💰🤓"],
         "pricing": {
             "input_cost_per_million_tokens": 3.00,
-            "output_cost_per_million_tokens": 15.00
+            "output_cost_per_million_tokens": 16.00
         },
         "tier_availability": ["paid"]
     },
-    "anthropic/claude-3-5-sonnet-latest": {
-        "aliases": ["sonnet-3.5"],
+
+    "openrouter/openai/gpt-5": {
+        "aliases": ["GPT-5 🤖💰"],
         "pricing": {
-            "input_cost_per_million_tokens": 3.00,
-            "output_cost_per_million_tokens": 15.00
+            "input_cost_per_million_tokens": 1.25,
+            "output_cost_per_million_tokens": 11.00
         },
         "tier_availability": ["paid"]
     },
@@ -107,19 +119,21 @@ def _generate_model_structures():
         pricing[model_name] = config["pricing"]
         
         # Also add pricing for legacy model name variations
-        if model_name.startswith("openrouter/deepseek/"):
-            legacy_name = model_name.replace("openrouter/", "")
-            pricing[legacy_name] = config["pricing"]
-        elif model_name.startswith("openrouter/qwen/"):
-            legacy_name = model_name.replace("openrouter/", "")
-            pricing[legacy_name] = config["pricing"]
-        elif model_name.startswith("gemini/"):
+        if model_name.startswith("gemini/"):
             legacy_name = model_name.replace("gemini/", "")
             pricing[legacy_name] = config["pricing"]
+        elif model_name.startswith("openrouter/google/"):
+            # Add google/gemini-2.5-pro alias for openrouter/google/gemini-2.5-pro
+            google_name = model_name.replace("openrouter/", "")
+            pricing[google_name] = config["pricing"]
         elif model_name.startswith("anthropic/"):
             # Add anthropic/claude-sonnet-4 alias for claude-sonnet-4-20250514
             if "claude-sonnet-4-20250514" in model_name:
                 pricing["anthropic/claude-sonnet-4"] = config["pricing"]
+        elif model_name.startswith("bedrock/us.anthropic.claude-sonnet-4"):
+            # Add anthropic/claude-sonnet-4 and claude-sonnet-4 aliases for bedrock models
+            pricing["anthropic/claude-sonnet-4"] = config["pricing"]
+            pricing["claude-sonnet-4"] = config["pricing"]
         elif model_name.startswith("xai/"):
             # Add pricing for OpenRouter x-ai models
             openrouter_name = model_name.replace("xai/", "openrouter/x-ai/")
@@ -139,7 +153,4 @@ MODEL_ACCESS_TIERS = {
     "tier_50_400": PAID_TIER_MODELS,
     "tier_125_800": PAID_TIER_MODELS,
     "tier_200_1000": PAID_TIER_MODELS,
-    "tier_25_170_yearly_commitment": PAID_TIER_MODELS,
-    "tier_6_42_yearly_commitment": PAID_TIER_MODELS,
-    "tier_12_84_yearly_commitment": PAID_TIER_MODELS,
 }

@@ -32,9 +32,9 @@ export interface CustomModel {
 // SINGLE SOURCE OF TRUTH for all model data - aligned with backend constants
 export const MODELS = {
   // Free tier models (available to all users)
-  'claude-sonnet-4': { 
+  'bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0': {
     tier: 'free',
-    priority: 100, 
+    priority: 98,
     recommended: true,
     lowQuality: false
   },
@@ -48,8 +48,8 @@ export const MODELS = {
 
   'openrouter/google/gemini-2.5-flash': { 
     tier: 'free', 
-    priority: 96,
-    recommended: false,
+    priority: 100,
+    recommended: true,
     lowQuality: false
   },
 
@@ -63,7 +63,12 @@ export const MODELS = {
 
   // Premium/Paid tier models (require subscription)
   'openrouter/x-ai/grok-4': { 
+
+
+  // Premium/Paid tier models (require subscription)
+  'openrouter/x-ai/grok-4': { 
     tier: 'premium', 
+    priority: 97,
     priority: 97,
     recommended: false,
     lowQuality: false
@@ -171,13 +176,13 @@ export const useModelSelection = () => {
       models = [
         { 
           id: DEFAULT_FREE_MODEL_ID, 
-          label: 'DeepSeek', 
+          label: 'Balanced 🧠⚖️💰', 
           requiresSubscription: false,
           priority: MODELS[DEFAULT_FREE_MODEL_ID]?.priority || 50
         },
         { 
           id: DEFAULT_PREMIUM_MODEL_ID, 
-          label: 'Sonnet 4', 
+          label: 'Balanced 🧠⚖️💰', 
           requiresSubscription: true, 
           priority: MODELS[DEFAULT_PREMIUM_MODEL_ID]?.priority || 100
         },
@@ -234,20 +239,14 @@ export const useModelSelection = () => {
     
     // Sort models consistently in one place:
     // 1. First by recommended (recommended first)
-    // 2. Then by priority (higher first)
-    // 3. Finally by name (alphabetical)
+    // 2. Then by name (alphabetical)
     const sortedModels = models.sort((a, b) => {
       // First by recommended status
       if (a.recommended !== b.recommended) {
         return a.recommended ? -1 : 1;
       }
 
-      // Then by priority (higher first)
-      if (a.priority !== b.priority) {
-        return b.priority - a.priority;
-      }
-      
-      // Finally by name
+      // Then by name
       return a.label.localeCompare(b.label);
     });
     return sortedModels;

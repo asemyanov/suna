@@ -553,6 +553,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
                       <AlertTriangle className="h-2.5 w-2.5 text-amber-500 absolute -top-1 -right-1" />
                     )}
                   </div>
+                  <span className="text-sm font-medium">Models</span>
                 </Button>
               </DropdownMenuTrigger>
             </TooltipTrigger>
