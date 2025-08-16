@@ -32,7 +32,7 @@ export const AgentBuilderChat = React.memo(function AgentBuilderChat({
   const [messages, setMessages] = useState<UnifiedMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [agentStatus, setAgentStatus] = useState<'idle' | 'running' | 'connecting' | 'error'>('idle');
-  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'tool_completed'>('idle');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasStartedConversation, setHasStartedConversation] = useState(false);
 
@@ -159,11 +159,27 @@ export const AgentBuilderChat = React.memo(function AgentBuilderChat({
         setAgentRunId(null);
         if (status === 'completed') {
           setSaveStatus('saved');
+          
+     
+          // Also invalidate specific queries for this agent
           queryClient.invalidateQueries({ queryKey: agentKeys.lists() });
           queryClient.invalidateQueries({ queryKey: agentKeys.detail(agentId) });
           queryClient.invalidateQueries({ queryKey: agentKeys.builderChatHistory(agentId) });
+          
+         
           setTimeout(() => setSaveStatus('idle'), 2000);
         }
+        break;
+      case 'tool_completed':
+        // Set tool_completed status and invalidate queries to refresh UI
+        setSaveStatus('tool_completed');
+        
+        // Invalidate agent queries to refresh UI after tool execution
+        queryClient.invalidateQueries({ queryKey: agentKeys.all });
+        queryClient.invalidateQueries({ queryKey: agentKeys.detail(agentId) });
+        
+        console.log('[AgentBuilderChat] Invalidated agent queries after tool completion');
+        setTimeout(() => setSaveStatus('idle'), 1500);
         break;
       case 'connecting':
         setAgentStatus('connecting');
@@ -188,7 +204,6 @@ export const AgentBuilderChat = React.memo(function AgentBuilderChat({
     status: streamHookStatus,
     textContent: streamingTextContent,
     toolCall: streamingToolCall,
-    error: streamError,
     agentRunId: currentHookRunId,
     startStreaming,
     stopStreaming,
@@ -366,6 +381,17 @@ export const AgentBuilderChat = React.memo(function AgentBuilderChat({
 
   return (
     <div className="flex flex-col h-full">
+      {/* Green edited label */}
+      {(saveStatus === 'saved' || saveStatus === 'tool_completed') && (
+        <div className="px-4 py-2 bg-green-50 dark:bg-green-950/20 border-b border-green-100 dark:border-green-900/50">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-sm text-green-700 dark:text-green-400 font-medium">
+              {saveStatus === 'saved' ? 'Agent configuration updated' : 'Tool execution completed'}
+            </span>
+          </div>
+        </div>
+      )}
       <div className="flex-1 overflow-hidden">
         <div className="h-full overflow-y-auto scrollbar-hide px-8">
           <ThreadContent

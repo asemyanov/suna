@@ -3,8 +3,8 @@ from typing import Dict, Any, List
 from agent.prompt import SYSTEM_PROMPT
 
 class SunaConfig:
-    NAME = "Suna"
-    DESCRIPTION = "Suna is your AI assistant with access to various tools and integrations to help you with tasks across domains."
+    NAME = "MEVO Default Agent"
+    DESCRIPTION = "MEVO is your AI assistant with access to various tools and integrations to help you with tasks across domains."
     AVATAR = "🌞"
     AVATAR_COLOR = "#F59E0B"
     DEFAULT_MODEL = "anthropic/claude-sonnet-4-20250514"

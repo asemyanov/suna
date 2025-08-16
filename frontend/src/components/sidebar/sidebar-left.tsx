@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Bot, Menu, Store, Plus, Zap, Plug, ChevronRight, Loader2 } from 'lucide-react';
 import { Bot, Menu, Store, Plus, Zap, ChevronRight, Loader2 } from 'lucide-react';
 
 import { NavAgents } from '@/components/sidebar/nav-agents';
@@ -76,6 +78,7 @@ export function SidebarLeft({
 }: React.ComponentProps<typeof Sidebar>) {
   const { state, setOpen, setOpenMobile } = useSidebar();
   const isMobile = useIsMobile();
+  const router = useRouter();
   const [user, setUser] = useState<{
     name: string;
     email: string;
@@ -99,6 +102,15 @@ export function SidebarLeft({
       setOpenMobile(false);
     }
   }, [pathname, searchParams, isMobile, setOpenMobile]);
+
+  const handleAgentsClick = () => {
+    if (state === 'collapsed') {
+      // If sidebar is collapsed, expand it and navigate to My Agents
+      setOpen(true);
+      router.push('/agents?tab=my-agents');
+    }
+    // If expanded, do nothing (let the CollapsibleTrigger handle it)
+  };
 
   
   useEffect(() => {
@@ -193,7 +205,7 @@ export function SidebarLeft({
                 className="group/collapsible"
               >
                 <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
+                  {state === 'collapsed' ? (
                     <SidebarMenuButton
                       tooltip="Agents"
                       onClick={() => {
@@ -204,9 +216,18 @@ export function SidebarLeft({
                     >
                       <Bot className="h-4 w-4 mr-1" />
                       <span>Agents</span>
-                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
-                  </CollapsibleTrigger>
+                  ) : (
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton
+                        tooltip="Agents"
+                      >
+                        <Bot className="h-4 w-4 mr-1" />
+                        <span>Agents</span>
+                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                  )}
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>

@@ -30,6 +30,7 @@ from agent.tools.sb_presentation_tool_v2 import SandboxPresentationToolV2
 from services.langfuse import langfuse
 from langfuse.client import StatefulTraceClient
 from agent.gemini_prompt import get_gemini_system_prompt
+from agent.gpt_prompt import get_gpt_system_prompt
 from agent.tools.mcp_tool_wrapper import MCPToolWrapper
 from agent.tools.task_list_tool import TaskListTool
 from agentpress.tool import SchemaType
@@ -239,8 +240,11 @@ class PromptManager:
                                   is_agent_builder: bool, thread_id: str, 
                                   mcp_wrapper_instance: Optional[MCPToolWrapper]) -> dict:
         
-        if "gemini-2.5-flash" in model_name.lower() and "gemini-2.5-pro" not in model_name.lower():
+        # Model-specific prompt selection
+        if "gemini-2.5-flash" in model_name.lower():
             default_system_content = get_gemini_system_prompt()
+        elif any(gpt_model in model_name.lower() for gpt_model in ["o4-mini-high", "o4-mini", "gpt-5-mini", "gpt-oss-120b"]):
+            default_system_content = get_gpt_system_prompt()
         else:
             default_system_content = get_system_prompt()
         
@@ -312,6 +316,44 @@ class PromptManager:
         datetime_info += "Use this information for any time-sensitive tasks, research, or when current date/time context is needed.\n"
         
         system_content += datetime_info
+
+        # Inject knowledge base context (both agent and thread-specific) if available
+        if not is_agent_builder:
+            try:
+                from flags.flags import is_enabled
+                
+                # Check if knowledge base feature is enabled
+                if await is_enabled("knowledge_base"):
+                    from services.supabase import DBConnection
+                    db = DBConnection()
+                    client = await db.client
+                    
+                    agent_id = agent_config.get('agent_id') if agent_config else None
+                    
+                    # Get combined knowledge base context (agent + thread) with token limit
+                    # Using 4000 tokens as default, but can be adjusted based on remaining context budget
+                    knowledge_context_result = await client.rpc('get_combined_knowledge_base_context', {
+                        'p_thread_id': thread_id,
+                        'p_agent_id': agent_id,
+                        'p_max_tokens': 4000
+                    }).execute()
+                    
+                    if knowledge_context_result.data and knowledge_context_result.data.strip():
+                        knowledge_context = knowledge_context_result.data
+                        system_content += f"\n\n{knowledge_context}"
+                        
+                        context_source = []
+                        if agent_id:
+                            context_source.append(f"agent {agent_id}")
+                        context_source.append(f"thread {thread_id}")
+                        
+                        logger.info(f"🧠 Injected knowledge base context from {' and '.join(context_source)} (~{len(knowledge_context)} chars)")
+                    else:
+                        logger.debug(f"No knowledge base context found for thread {thread_id}" + (f" and agent {agent_id}" if agent_id else ""))
+                
+            except Exception as e:
+                logger.error(f"Error injecting knowledge base context: {str(e)}")
+                # Continue without knowledge base context rather than failing
 
         return {"role": "system", "content": system_content}
 

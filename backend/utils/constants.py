@@ -1,115 +1,56 @@
 # Master model configuration - single source of truth
 MODELS = {
     # Free tier models
-
-    "anthropic/claude-sonnet-4-20250514": {
-        "aliases": ["claude-sonnet-4"],
+    "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0": {
+        "aliases": ["Expert 🤑💰💸"],
         "pricing": {
             "input_cost_per_million_tokens": 3.00,
             "output_cost_per_million_tokens": 15.00
         },
         "tier_availability": ["free", "paid"]
     },
-    # "openrouter/deepseek/deepseek-chat": {
-    #     "aliases": ["deepseek"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 0.38,
-    #         "output_cost_per_million_tokens": 0.89
-    #     },
-    #     "tier_availability": ["free", "paid"]
-    # },
-    # "openrouter/qwen/qwen3-235b-a22b": {
-    #     "aliases": ["qwen3"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 0.13,
-    #         "output_cost_per_million_tokens": 0.60
-    #     },
-    #     "tier_availability": ["free", "paid"]
-    # },
-    # "openrouter/google/gemini-2.5-flash-preview-05-20": {
-    #     "aliases": ["gemini-flash-2.5"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 0.15,
-    #         "output_cost_per_million_tokens": 0.60
-    #     },
-    #     "tier_availability": ["free", "paid"]
-    # },
-    # "openrouter/deepseek/deepseek-chat-v3-0324": {
-    #     "aliases": ["deepseek/deepseek-chat-v3-0324"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 0.38,
-    #         "output_cost_per_million_tokens": 0.89
-    #     },
-    #     "tier_availability": ["free", "paid"]
-    # },
-    "openrouter/moonshotai/kimi-k2": {
-        "aliases": ["moonshotai/kimi-k2"],
-        "pricing": {
-            "input_cost_per_million_tokens": 1.00,
-            "output_cost_per_million_tokens": 3.00
-        },
-        "tier_availability": ["free", "paid"]
-    },
-    "xai/grok-4": {
-        "aliases": ["grok-4", "x-ai/grok-4"],
-        "pricing": {
-            "input_cost_per_million_tokens": 5.00,
-            "output_cost_per_million_tokens": 15.00
-        },
-        "tier_availability": ["paid"]
-    },
-    
-    # Paid tier only models
-    "gemini/gemini-2.5-pro": {
-        "aliases": ["google/gemini-2.5-pro"],
+
+    "openrouter/google/gemini-2.5-pro": {
+        "aliases": ["Gemini Pro"],
         "pricing": {
             "input_cost_per_million_tokens": 1.25,
             "output_cost_per_million_tokens": 10.00
         },
         "tier_availability": ["paid"]
     },
-    # "openai/gpt-4o": {
-    #     "aliases": ["gpt-4o"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 2.50,
-    #         "output_cost_per_million_tokens": 10.00
-    #     },
-    #     "tier_availability": ["paid"]
-    # },
-    # "openai/gpt-4.1": {
-    #     "aliases": ["gpt-4.1"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 15.00,
-    #         "output_cost_per_million_tokens": 60.00
-    #     },
-    #     "tier_availability": ["paid"]
-    # },
-    "openai/gpt-5": {
-        "aliases": ["gpt-5"],
-        "pricing": {
-            "input_cost_per_million_tokens": 1.25,
-            "output_cost_per_million_tokens": 10.00
-        },
-        "tier_availability": ["paid"]
-    },
-    "openai/gpt-5-mini": {
-        "aliases": ["gpt-5-mini"],
+
+
+    "openrouter/openai/o4-mini-high": {
+        "aliases": ["o4-mini 🧠⚖️💰"],
         "pricing": {
             "input_cost_per_million_tokens": 0.25,
             "output_cost_per_million_tokens": 2.00
         },
-        "tier_availability": ["paid"]
+        "tier_availability": ["free", "paid"]
     },
-    # "openai/gpt-4.1-mini": {
-    #     "aliases": ["gpt-4.1-mini"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 1.50,
-    #         "output_cost_per_million_tokens": 6.00
-    #     },
-    #     "tier_availability": ["paid"]
-    # },
-    "anthropic/claude-3-7-sonnet-latest": {
-        "aliases": ["sonnet-3.7"],
+
+    "openrouter/openai/gpt-5-mini": {
+        "aliases": ["GPT-5-M 🤖💰"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0.25,
+            "output_cost_per_million_tokens": 2.00
+        },
+        "tier_availability": ["free", "paid"]
+    },
+
+    "openrouter/google/gemini-2.5-flash": {
+        "aliases": ["Main 💨⚡️🚀"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0.3,
+            "output_cost_per_million_tokens": 2.50
+        },
+        "tier_availability": ["free", "paid"]
+    },
+
+
+
+    "openrouter/x-ai/grok-4": {
+        "aliases": ["Grok 💰🤓"],
         "pricing": {
             "input_cost_per_million_tokens": 3.00,
             "output_cost_per_million_tokens": 15.00
@@ -123,7 +64,18 @@ MODELS = {
             "output_cost_per_million_tokens": 15.00
         },
         "tier_availability": ["paid"]
-    },   
+    },
+
+
+    # "openrouter/openai/gpt-oss-120b": {
+    #     "aliases": ["GPT-OSS"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 0.2,
+    #         "output_cost_per_million_tokens": 1.00
+    #     },
+    #     "tier_availability": ["paid"]
+    # },
+
 }
 
 # Derived structures (auto-generated from MODELS)

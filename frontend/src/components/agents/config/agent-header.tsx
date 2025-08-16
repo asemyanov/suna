@@ -197,56 +197,38 @@ export function AgentHeader({
 
       {/* Right side - Version controls, tabs and actions aligned together */}
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-1">
-          {!isSunaAgent && currentFormData && (
-            <AgentVersionSwitcher
-              agentId={agentId}
-              currentVersionId={currentVersionId}
-              currentFormData={currentFormData}
-            />
-          )}
-          <UpcomingRunsDropdown agentId={agentId} />
-          {onExport && (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    className="h-9 w-9"
-                    onClick={onExport}
-                    disabled={isExporting}
-                  >
-                    <Download className="h-4 w-4" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{isExporting ? 'Exporting...' : 'Export Agent'}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          )}
-        </div>
-        {!isSunaAgent && (
-          <Tabs value={activeTab} onValueChange={onTabChange}>
-            <TabsList className="grid grid-cols-2 h-9 w-[280px]">
-              <TabsTrigger 
-                value="agent-builder" 
-                className="flex items-center gap-1.5 text-xs px-3"
+        <Tabs value={activeTab} onValueChange={onTabChange}>
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="agent-builder" className="flex items-center gap-1.5">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Test run</span>
+            </TabsTrigger>
+            <TabsTrigger value="configuration" className="flex items-center gap-1.5">
+              <Settings className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Manual Config</span>
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+        
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {onExport && (
+              <DropdownMenuItem 
+                onClick={onExport} 
+                disabled={isExporting}
+                className="flex items-center gap-2"
               >
-                <Sparkles className="h-3 w-3" />
-                <span className="hidden md:inline">Prompt to build</span>
-              </TabsTrigger>
-              <TabsTrigger 
-                value="configuration" 
-                className="flex items-center gap-1.5 text-xs px-3"
-              >
-                <Settings className="h-3 w-3" />
-                <span className="hidden md:inline">Manual config</span>
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        )}
+                <Download className="h-4 w-4" />
+                {isExporting ? 'Exporting...' : 'Export Agent'}
+              </DropdownMenuItem>
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
     <ProfilePictureDialog

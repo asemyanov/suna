@@ -7,9 +7,10 @@ import { useAvailableModels } from '@/hooks/react-query/subscriptions/use-model'
 
 export const STORAGE_KEY_MODEL = 'suna-preferred-model-v3';
 export const STORAGE_KEY_CUSTOM_MODELS = 'customModels';
-export const DEFAULT_PREMIUM_MODEL_ID = 'claude-sonnet-4';
-// export const DEFAULT_FREE_MODEL_ID = 'moonshotai/kimi-k2';
-export const DEFAULT_FREE_MODEL_ID = 'claude-sonnet-4';
+export const DEFAULT_PREMIUM_MODEL_ID = 'openrouter/google/gemini-2.5-pro';
+// Kimi2 has been commented out, Gemini 2.5 Pro is now the default free model.
+export const DEFAULT_FREE_MODEL_ID = 'openrouter/google/gemini-2.5-flash';
+// export const DEFAULT_FREE_MODEL_ID = 'openrouter/moonshotai/kimi-k2';
 
 export type SubscriptionStatus = 'no_subscription' | 'active';
 
@@ -38,74 +39,42 @@ export const MODELS = {
     lowQuality: false
   },
 
-  // 'gemini-flash-2.5': { 
-  //   tier: 'free', 
-  //   priority: 70,
-  //   recommended: false,
-  //   lowQuality: false
-  // },
-  // 'qwen3': { 
-  //   tier: 'free', 
-  //   priority: 60,
-  //   recommended: false,
-  //   lowQuality: false
-  // },
+  'openrouter/google/gemini-2.5-pro': { 
+    tier: 'free', 
+    priority: 95,
+    recommended: true,
+    lowQuality: false
+  },
 
-  // Premium/Paid tier models (require subscription) - except specific free models
-  'moonshotai/kimi-k2': { 
+  'openrouter/google/gemini-2.5-flash': { 
     tier: 'free', 
     priority: 96,
     recommended: false,
     lowQuality: false
   },
-  'grok-4': { 
-    tier: 'premium', 
-    priority: 94,
+
+  'openrouter/openai/gpt-oss-120b': { 
+    tier: 'free', 
+    priority: 97,
     recommended: false,
     lowQuality: false
   },
-  'sonnet-3.7': { 
+
+
+  // Premium/Paid tier models (require subscription)
+  'openrouter/x-ai/grok-4': { 
     tier: 'premium', 
-    priority: 93, 
+    priority: 97,
     recommended: false,
     lowQuality: false
   },
-  'google/gemini-2.5-pro': { 
-    tier: 'premium', 
-    priority: 96,
-    recommended: false,
-    lowQuality: false
-  },
-  'sonnet-3.5': { 
-    tier: 'premium', 
-    priority: 90,
-    recommended: false,
-    lowQuality: false
-  },
-  'gpt-5': { 
+
+  'openrouter/openai/gpt-5': { 
     tier: 'premium', 
     priority: 99,
     recommended: false,
     lowQuality: false
   },
-  'gpt-5-mini': { 
-    tier: 'premium', 
-    priority: 98,
-    recommended: false,
-    lowQuality: false
-  },
-  'gemini-2.5-flash:thinking': { 
-    tier: 'premium', 
-    priority: 84,
-    recommended: false,
-    lowQuality: false
-  },
-  // 'deepseek/deepseek-chat-v3-0324': { 
-  //   tier: 'free', 
-  //   priority: 75,
-  //   recommended: false,
-  //   lowQuality: false
-  // },
 };
 
 // Helper to check if a user can access a model based on subscription status

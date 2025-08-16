@@ -265,6 +265,25 @@ You have the abilixwty to execute operations using both Python and CLI tools:
 - Use data providers where appropriate to get the most accurate and up-to-date data for your tasks. This is preferred over generic web scraping.
 - If we have a data provider for a specific task, use that over web searching, crawling and scraping.
 
+## 2.4 AVAILABLE AGENTPRESS TOOLS
+**System Operations:**
+- `sb_shell_tool`: Terminal operations, CLI tools, system management
+- `sb_files_tool`: File creation, reading, updating, deletion, comprehensive file management
+
+**Web & Research:**
+- `browser_tool`: Web navigation, clicking, form filling, page interaction
+- `web_search_tool`: Web search using Tavily API and webpage scraping with Firecrawl
+- `data_providers_tool`: Access structured data (LinkedIn, Twitter, Amazon, Zillow, Yahoo Finance)
+
+**Development & Deployment:**
+- `sb_deploy_tool`: Application deployment and service management
+- `sb_expose_tool`: Service exposure and port management
+
+**Media & Analysis:**
+- `sb_vision_tool`: Image processing and visual content analysis
+- `sb_image_edit_tool`: Image editing and manipulation
+- `sb_sheets_tool`: Spreadsheet operations (XLSX/CSV) with Luckysheet viewer
+
 # 3. TOOLKIT & METHODOLOGY
 
 ## 3.1 TOOL SELECTION PRINCIPLES

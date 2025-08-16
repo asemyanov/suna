@@ -12,7 +12,9 @@ import { useCreateAgentVersion, useActivateAgentVersion } from '@/hooks/react-qu
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AgentPreview } from '../../../../../components/agents/agent-preview';
-
+import { AgentBuilderChat } from '../../../../../components/agents/agent-builder-chat';
+import { AgentVersionSwitcher } from '@/components/agents/agent-version-switcher';
+import { CreateVersionButton } from '@/components/agents/create-version-button';
 import { useAgentVersionData } from '../../../../../hooks/use-agent-version-data';
 import { useSearchParams } from 'next/navigation';
 import { useAgentVersionStore } from '../../../../../lib/stores/agent-version-store';
@@ -538,10 +540,61 @@ export default function AgentConfigurationPage() {
     <div className="h-screen flex flex-col bg-background">
       <div className="flex-1 flex overflow-hidden">
         <div className="hidden lg:grid lg:grid-cols-2 w-full h-full">
-          <div className="bg-background h-full flex flex-col border-r border-border/40 overflow-hidden">
-            <div className="flex-shrink-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <div className="pt-4">
-
+          <div className="bg-muted/30 dark:bg-background h-full flex flex-col border-r border-border/40 overflow-hidden">
+            <div className="flex-shrink-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/20">
+              <div className="px-4 py-4">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2 min-w-0">
+                    {!agent?.metadata?.is_suna_default && (
+                      <AgentVersionSwitcher
+                        agentId={agentId}
+                        currentVersionId={agent?.current_version_id}
+                        currentFormData={{
+                          system_prompt: formData.system_prompt,
+                          configured_mcps: formData.configured_mcps,
+                          custom_mcps: formData.custom_mcps,
+                          agentpress_tools: formData.agentpress_tools
+                        }}
+                      />
+                    )}
+                    <CreateVersionButton
+                      agentId={agentId}
+                      currentFormData={{
+                        system_prompt: formData.system_prompt,
+                        configured_mcps: formData.configured_mcps,
+                        custom_mcps: formData.custom_mcps,
+                        agentpress_tools: formData.agentpress_tools
+                      }}
+                      hasChanges={hasUnsavedChanges && !isViewingOldVersion}
+                      onVersionCreated={() => {
+                        setOriginalData(formData);
+                      }}
+                    />
+                    <UpcomingRunsDropdown agentId={agentId} />
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    {!isViewingOldVersion && hasUnsavedChanges && (
+                      <Button 
+                        onClick={handleSave}
+                        disabled={isSaving}
+                        size="sm"
+                        className="h-8"
+                      >
+                        {isSaving ? (
+                          <>
+                            <Loader2 className="h-3 w-3 animate-spin" />
+                            Saving...
+                          </>
+                        ) : (
+                          <>
+                            <Save className="h-3 w-3" />
+                            Save
+                          </>
+                        )}
+                      </Button>
+                    )}
+                  </div>
+                </div>
                 
                 {isViewingOldVersion && (
                   <div className="mb-4 px-8">
@@ -603,7 +656,9 @@ export default function AgentConfigurationPage() {
                       displayData={displayData}
                           isViewingOldVersion={isViewingOldVersion}
                       onFieldChange={handleFieldChange}
-                        />
+                      onStyleChange={handleStyleChange}
+                      agentMetadata={agent?.metadata}
+                    />
                   </TabsContent>
                   <TabsContent value="configuration" className="flex-1 m-0 overflow-hidden">
                     <ConfigurationTab
@@ -625,8 +680,14 @@ export default function AgentConfigurationPage() {
             </div>
           </div>
           <div className="bg-muted/30 h-full overflow-hidden">
-            <div className="h-full overflow-y-auto">
-              {previewAgent && <AgentPreview agent={previewAgent} agentMetadata={agent?.metadata} />}
+            <div className="px-4 h-full">
+              <AgentBuilderChat 
+                agentId={agentId}
+                formData={displayData}
+                handleFieldChange={handleFieldChange}
+                handleStyleChange={handleStyleChange}
+                currentStyle={currentStyle}
+              />
             </div>
           </div>
         </div>
@@ -694,7 +755,9 @@ export default function AgentConfigurationPage() {
                       displayData={displayData}
                           isViewingOldVersion={isViewingOldVersion}
                       onFieldChange={handleFieldChange}
-                        />
+                      onStyleChange={handleStyleChange}
+                      agentMetadata={agent?.metadata}
+                    />
                   </TabsContent>
                   <TabsContent value="configuration" className="flex-1 m-0 overflow-hidden">
                     <ConfigurationTab
@@ -726,10 +789,16 @@ export default function AgentConfigurationPage() {
             </DrawerTrigger>
             <DrawerContent className="h-[85vh]">
               <DrawerHeader className="border-b">
-                <DrawerTitle>Agent Preview</DrawerTitle>
+                <DrawerTitle>Prompt to Build</DrawerTitle>
               </DrawerHeader>
               <div className="flex-1 overflow-y-auto p-4">
-                {previewAgent && <AgentPreview agent={previewAgent} agentMetadata={agent?.metadata} />}
+                <AgentBuilderChat 
+                  agentId={agentId}
+                  formData={displayData}
+                  handleFieldChange={handleFieldChange}
+                  handleStyleChange={handleStyleChange}
+                  currentStyle={currentStyle}
+                />
               </div>
             </DrawerContent>
           </Drawer>

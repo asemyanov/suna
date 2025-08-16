@@ -1,5 +1,5 @@
 import React from 'react';
-import { AgentBuilderChat } from '../agent-builder-chat';
+import { AgentPreview } from '../agent-preview';
 
 interface AgentBuilderTabProps {
   agentId: string;
@@ -14,6 +14,10 @@ interface AgentBuilderTabProps {
   };
   isViewingOldVersion: boolean;
   onFieldChange: (field: string, value: any) => void;
+  onStyleChange: (emoji: string, color: string) => void;
+  agentMetadata?: {
+    is_suna_default?: boolean;
+  };
 }
 
 export function AgentBuilderTab({
@@ -21,6 +25,8 @@ export function AgentBuilderTab({
   displayData,
   isViewingOldVersion,
   onFieldChange,
+  onStyleChange,
+  agentMetadata,
 }: AgentBuilderTabProps) {
   if (isViewingOldVersion) {
     return (
@@ -38,13 +44,15 @@ export function AgentBuilderTab({
     );
   }
 
+  // Create previewAgent object similar to main page
+  const previewAgent = {
+    agent_id: agentId,
+    ...displayData,
+  };
+
   return (
-    <div className="h-full">
-      <AgentBuilderChat 
-        agentId={agentId}
-        formData={displayData}
-        handleFieldChange={onFieldChange}
-      />
+    <div className="h-full overflow-y-auto">
+      {previewAgent && <AgentPreview agent={previewAgent} agentMetadata={agentMetadata} />}
     </div>
   );
 } 

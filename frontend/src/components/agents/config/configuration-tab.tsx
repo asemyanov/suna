@@ -76,7 +76,8 @@ export function ConfigurationTab({
     if (['system', 'tools', 'integrations', 'knowledge', 'playbooks', 'triggers'].includes(val || '')) {
       return val!;
     }
-    return isSunaAgent ? 'integrations' : 'system';
+    // return isSunaAgent ? 'integrations' : 'system';
+    return '';
   };
 
   const [openAccordion, setOpenAccordion] = React.useState<string>(mapAccordion(initialAccordion));
@@ -362,7 +363,7 @@ export function ConfigurationTab({
                     </div>
                   </div>
                   <div className="text-left flex-1 min-w-0">
-                    <h4 className="text-sm font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">Playbooks</h4>
+                    <h4 className="text-sm font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">Workflows</h4>
                     <p className="text-xs text-muted-foreground group-hover:text-foreground/70 transition-colors duration-300">Simple variable-driven runs</p>
                   </div>
                   <ChevronDown className={`h-4 w-4 flex-shrink-0 transition-transform duration-300 ease-out ${openAccordion === 'playbooks' ? 'rotate-180' : ''}`} />
@@ -398,7 +399,7 @@ export function ConfigurationTab({
                     </div>
                   </div>
                   <div className="text-left flex-1 min-w-0">
-                    <h4 className="text-sm font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">Triggers</h4>
+                    <h4 className="text-sm font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">Schedule</h4>
                     <p className="text-xs text-muted-foreground group-hover:text-foreground/70 transition-colors duration-300">Set up automated agent runs</p>
                   </div>
                   <ChevronDown className={`h-4 w-4 flex-shrink-0 transition-transform duration-300 ease-out ${openAccordion === 'triggers' ? 'rotate-180' : ''}`} />

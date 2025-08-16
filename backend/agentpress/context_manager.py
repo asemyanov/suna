@@ -221,13 +221,13 @@ class ContextManager:
         if 'sonnet' in llm_model.lower():
             max_tokens = 200 * 1000 - 64000 - 28000
         elif 'gpt' in llm_model.lower():
-            max_tokens = 128 * 1000 - 28000
+            max_tokens = 228 * 1000 - 28000
         elif 'gemini' in llm_model.lower():
-            max_tokens = 1000 * 1000 - 300000
+            max_tokens = 1000 * 1000 - 200000
         elif 'deepseek' in llm_model.lower():
             max_tokens = 128 * 1000 - 28000
         else:
-            max_tokens = 41 * 1000 - 10000
+            max_tokens = 110 * 1000 - 10000
 
         result = messages
         result = self.remove_meta_messages(result)

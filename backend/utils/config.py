@@ -216,7 +216,7 @@ class Configuration:
     AWS_REGION_NAME: Optional[str] = None
     
     # Model configuration
-    MODEL_TO_USE: Optional[str] = "anthropic/claude-sonnet-4-20250514"
+    MODEL_TO_USE: Optional[str] = "openrouter/google/gemini-2.5-flash"
     
     # Supabase configuration
     SUPABASE_URL: str
@@ -236,8 +236,8 @@ class Configuration:
     
     # Search and other API keys
     TAVILY_API_KEY: str
-    RAPID_API_KEY: str
-    CLOUDFLARE_API_TOKEN: Optional[str] = None
+    RAPID_API_KEY: Optional[str] = None
+    
     FIRECRAWL_API_KEY: str
     FIRECRAWL_URL: Optional[str] = "https://api.firecrawl.dev"
     
@@ -274,8 +274,8 @@ class Configuration:
     # Agent limits per billing tier
     # Note: These limits are bypassed in local mode (ENV_MODE=local) where unlimited agents are allowed
     AGENT_LIMITS = {
-        'free': 2,
-        'tier_2_20': 5,
+        'free': 20,
+        'tier_2_20': 20,
         'tier_6_50': 20,
         'tier_12_100': 20,
         'tier_25_200': 100,
@@ -283,7 +283,7 @@ class Configuration:
         'tier_125_800': 100,
         'tier_200_1000': 100,
         # Yearly plans have same limits as monthly
-        'tier_2_20_yearly': 5,
+        'tier_2_20_yearly': 20,
         'tier_6_50_yearly': 20,
         'tier_12_100_yearly': 20,
         'tier_25_200_yearly': 100,
@@ -291,7 +291,7 @@ class Configuration:
         'tier_125_800_yearly': 100,
         'tier_200_1000_yearly': 100,
         # Yearly commitment plans
-        'tier_2_17_yearly_commitment': 5,
+        'tier_2_17_yearly_commitment': 20,
         'tier_6_42_yearly_commitment': 20,
         'tier_25_170_yearly_commitment': 100,
     }
