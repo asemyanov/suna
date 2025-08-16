@@ -241,7 +241,7 @@ export default function APIKeysPage() {
             <h1 className="text-2xl font-bold">API Keys</h1>
           </div>
           <p className="text-muted-foreground">
-            Manage your API keys for programmatic access to Suna
+            Manage your API keys for programmatic access to MEVO
           </p>
         </div>
 

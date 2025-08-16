@@ -61,7 +61,7 @@ export function AgentPlaybooksConfiguration({ agentId, agentName }: AgentPlayboo
             <div className="flex items-center justify-start">
                 <Button onClick={() => { setEditing(null); setIsCreateOpen(true); }} size="sm" className="gap-2">
                     <Plus className="h-4 w-4" />
-                    New Playbook
+                    New Workflow
                 </Button>
             </div>
 
@@ -82,9 +82,9 @@ export function AgentPlaybooksConfiguration({ agentId, agentName }: AgentPlayboo
             ) : (
                 <div className="space-y-2">
                     {playbooks.map((pb) => (
-                        <div key={pb.id} className="flex items-center justify-between p-4 rounded-lg border bg-card hover:bg-muted/50 transition-colors group">
-                            <div className="flex items-center space-x-4 flex-1 min-w-0">
-                                <div className="p-2 rounded-lg bg-muted border">
+                        <div key={pb.id} className="flex items-start justify-between p-4 rounded-lg border bg-card hover:bg-muted/50 transition-colors group min-h-[4rem]">
+                            <div className="flex items-start space-x-4 flex-1 min-w-0">
+                                <div className="p-2 rounded-lg bg-muted border flex-shrink-0">
                                     <BookOpen className="h-4 w-4" />
                                 </div>
                                 <div className="flex-1 min-w-0">
@@ -92,11 +92,11 @@ export function AgentPlaybooksConfiguration({ agentId, agentName }: AgentPlayboo
                                         <h4 className="text-sm font-medium truncate w-full">{pb.name}</h4>
                                     </div>
                                     {pb.description && (
-                                        <p className="text-xs text-muted-foreground truncate w-full">{pb.description}</p>
+                                        <p className="text-xs text-muted-foreground line-clamp-2 break-words">{pb.description}</p>
                                     )}
                                 </div>
                             </div>
-                            <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                            <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-4">
                                 <Button size="sm" variant="ghost" className="h-8 w-8 p-0" onClick={() => setExecuting(pb)} aria-label="Run playbook">
                                     <Play className="h-4 w-4" />
                                 </Button>

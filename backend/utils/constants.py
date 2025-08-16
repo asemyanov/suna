@@ -1,129 +1,92 @@
 # Master model configuration - single source of truth
 MODELS = {
-    # Free tier models
 
-    "anthropic/claude-sonnet-4-20250514": {
-        "aliases": ["claude-sonnet-4"],
+    # "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0": {
+    #     "aliases": ["claude-sonnet-4"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 3.00,
+    #         "output_cost_per_million_tokens": 15.00
+    #     },
+    #     "tier_availability": ["free", "paid"]
+    # },   
+    
+    # Free tier models
+    "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0": {
+        "aliases": ["Expert 🤑💰💸"],
         "pricing": {
             "input_cost_per_million_tokens": 3.00,
             "output_cost_per_million_tokens": 15.00
         },
         "tier_availability": ["free", "paid"]
     },
-    # "openrouter/deepseek/deepseek-chat": {
-    #     "aliases": ["deepseek"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 0.38,
-    #         "output_cost_per_million_tokens": 0.89
-    #     },
-    #     "tier_availability": ["free", "paid"]
-    # },
-    # "openrouter/qwen/qwen3-235b-a22b": {
-    #     "aliases": ["qwen3"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 0.13,
-    #         "output_cost_per_million_tokens": 0.60
-    #     },
-    #     "tier_availability": ["free", "paid"]
-    # },
-    # "openrouter/google/gemini-2.5-flash-preview-05-20": {
-    #     "aliases": ["gemini-flash-2.5"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 0.15,
-    #         "output_cost_per_million_tokens": 0.60
-    #     },
-    #     "tier_availability": ["free", "paid"]
-    # },
-    # "openrouter/deepseek/deepseek-chat-v3-0324": {
-    #     "aliases": ["deepseek/deepseek-chat-v3-0324"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 0.38,
-    #         "output_cost_per_million_tokens": 0.89
-    #     },
-    #     "tier_availability": ["free", "paid"]
-    # },
-    "openrouter/moonshotai/kimi-k2": {
-        "aliases": ["moonshotai/kimi-k2"],
+
+    "openrouter/google/gemini-2.5-pro": {
+        "aliases": ["Gemini Pro"],
         "pricing": {
-            "input_cost_per_million_tokens": 1.00,
-            "output_cost_per_million_tokens": 3.00
+            "input_cost_per_million_tokens": 1.25,
+            "output_cost_per_million_tokens": 10.00
+        },
+        "tier_availability": ["paid"]
+    },
+
+
+    "openrouter/openai/o4-mini-high": {
+        "aliases": ["GPT-o4-mh 🧠⚖️💰"],
+        "pricing": {
+            "input_cost_per_million_tokens": 1.10,
+            "output_cost_per_million_tokens": 4.40
         },
         "tier_availability": ["free", "paid"]
     },
-    "xai/grok-4": {
-        "aliases": ["grok-4", "x-ai/grok-4"],
-        "pricing": {
-            "input_cost_per_million_tokens": 5.00,
-            "output_cost_per_million_tokens": 15.00
-        },
-        "tier_availability": ["paid"]
-    },
-    
-    # Paid tier only models
-    "gemini/gemini-2.5-pro": {
-        "aliases": ["google/gemini-2.5-pro"],
-        "pricing": {
-            "input_cost_per_million_tokens": 1.25,
-            "output_cost_per_million_tokens": 10.00
-        },
-        "tier_availability": ["paid"]
-    },
-    # "openai/gpt-4o": {
-    #     "aliases": ["gpt-4o"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 2.50,
-    #         "output_cost_per_million_tokens": 10.00
-    #     },
-    #     "tier_availability": ["paid"]
-    # },
-    # "openai/gpt-4.1": {
-    #     "aliases": ["gpt-4.1"],
-    #     "pricing": {
-    #         "input_cost_per_million_tokens": 15.00,
-    #         "output_cost_per_million_tokens": 60.00
-    #     },
-    #     "tier_availability": ["paid"]
-    # },
-    "openai/gpt-5": {
-        "aliases": ["gpt-5"],
-        "pricing": {
-            "input_cost_per_million_tokens": 1.25,
-            "output_cost_per_million_tokens": 10.00
-        },
-        "tier_availability": ["paid"]
-    },
-    "openai/gpt-5-mini": {
-        "aliases": ["gpt-5-mini"],
+
+    "openrouter/openai/gpt-5-mini": {
+        "aliases": ["GPT-5-M 🤖💰"],
         "pricing": {
             "input_cost_per_million_tokens": 0.25,
             "output_cost_per_million_tokens": 2.00
         },
+        "tier_availability": ["free", "paid"]
+    },
+
+    "openrouter/google/gemini-2.5-flash": {
+        "aliases": ["Main 💨⚡️🚀"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0.3,
+            "output_cost_per_million_tokens": 2.50
+        },
+        "tier_availability": ["free", "paid"]
+    },
+
+
+
+    "openrouter/x-ai/grok-4": {
+        "aliases": ["Grok 💰🤓"],
+        "pricing": {
+            "input_cost_per_million_tokens": 3.00,
+            "output_cost_per_million_tokens": 15.00
+        },
         "tier_availability": ["paid"]
     },
-    # "openai/gpt-4.1-mini": {
-    #     "aliases": ["gpt-4.1-mini"],
+
+    "openrouter/openai/gpt-5": {
+        "aliases": ["GPT-5 🤖💰"],
+        "pricing": {
+            "input_cost_per_million_tokens": 1.25,
+            "output_cost_per_million_tokens": 11.00
+        },
+        "tier_availability": ["paid"]
+    },
+
+
+    # "openrouter/openai/gpt-oss-120b": {
+    #     "aliases": ["GPT-OSS"],
     #     "pricing": {
-    #         "input_cost_per_million_tokens": 1.50,
-    #         "output_cost_per_million_tokens": 6.00
+    #         "input_cost_per_million_tokens": 0.2,
+    #         "output_cost_per_million_tokens": 1.00
     #     },
     #     "tier_availability": ["paid"]
     # },
-    "anthropic/claude-3-7-sonnet-latest": {
-        "aliases": ["sonnet-3.7"],
-        "pricing": {
-            "input_cost_per_million_tokens": 3.00,
-            "output_cost_per_million_tokens": 15.00
-        },
-        "tier_availability": ["paid"]
-    },
-    "anthropic/claude-3-5-sonnet-latest": {
-        "aliases": ["sonnet-3.5"],
-        "pricing": {
-            "input_cost_per_million_tokens": 3.00,
-            "output_cost_per_million_tokens": 15.00
-        },
-        "tier_availability": ["paid"]
-    },   
+
 }
 
 # Derived structures (auto-generated from MODELS)
@@ -155,19 +118,21 @@ def _generate_model_structures():
         pricing[model_name] = config["pricing"]
         
         # Also add pricing for legacy model name variations
-        if model_name.startswith("openrouter/deepseek/"):
-            legacy_name = model_name.replace("openrouter/", "")
-            pricing[legacy_name] = config["pricing"]
-        elif model_name.startswith("openrouter/qwen/"):
-            legacy_name = model_name.replace("openrouter/", "")
-            pricing[legacy_name] = config["pricing"]
-        elif model_name.startswith("gemini/"):
+        if model_name.startswith("gemini/"):
             legacy_name = model_name.replace("gemini/", "")
             pricing[legacy_name] = config["pricing"]
+        elif model_name.startswith("openrouter/google/"):
+            # Add google/gemini-2.5-pro alias for openrouter/google/gemini-2.5-pro
+            google_name = model_name.replace("openrouter/", "")
+            pricing[google_name] = config["pricing"]
         elif model_name.startswith("anthropic/"):
             # Add anthropic/claude-sonnet-4 alias for claude-sonnet-4-20250514
             if "claude-sonnet-4-20250514" in model_name:
                 pricing["anthropic/claude-sonnet-4"] = config["pricing"]
+        elif model_name.startswith("bedrock/us.anthropic.claude-sonnet-4"):
+            # Add anthropic/claude-sonnet-4 and claude-sonnet-4 aliases for bedrock models
+            pricing["anthropic/claude-sonnet-4"] = config["pricing"]
+            pricing["claude-sonnet-4"] = config["pricing"]
         elif model_name.startswith("xai/"):
             # Add pricing for OpenRouter x-ai models
             openrouter_name = model_name.replace("xai/", "openrouter/x-ai/")
@@ -187,7 +152,4 @@ MODEL_ACCESS_TIERS = {
     "tier_50_400": PAID_TIER_MODELS,
     "tier_125_800": PAID_TIER_MODELS,
     "tier_200_1000": PAID_TIER_MODELS,
-    "tier_25_170_yearly_commitment": PAID_TIER_MODELS,
-    "tier_6_42_yearly_commitment": PAID_TIER_MODELS,
-    "tier_12_84_yearly_commitment": PAID_TIER_MODELS,
 }

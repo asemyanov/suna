@@ -63,13 +63,13 @@ export function KortixEnterpriseModal({
           <div className="p-6 lg:p-8 flex flex-col bg-white dark:bg-black relative h-full overflow-y-auto border-r border-gray-200 dark:border-gray-800">
             <div className="relative z-10 flex flex-col h-full">
               <div className="mb-6 flex-shrink-0">
-                <Image
+                {/* <Image
                   src={isDarkMode ? '/kortix-logo-white.svg' : '/kortix-logo.svg'}
                   alt="Kortix Logo"
                   width={80}
                   height={28}
                   className="h-7 w-auto"
-                />
+                /> */}
               </div>
 
               <div className="mb-6 flex-shrink-0">
@@ -119,7 +119,7 @@ export function KortixEnterpriseModal({
             <div className="h-full overflow-auto">
               <Cal
                 namespace="enterprise-demo"
-                calLink="team/kortix/enterprise-demo"
+                calLink="problemx"
                 style={{ width: '100%', height: '100%' }}
                 config={{
                   layout: 'month_view',

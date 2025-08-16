@@ -16,7 +16,7 @@ class Agent:
         self,
         client: AgentsClient,
         agent_id: str,
-        model: str = "anthropic/claude-sonnet-4-20250514",
+        model: str = "openrouter/openai/o4-mini-high",
     ):
         self._client = client
         self._agent_id = agent_id

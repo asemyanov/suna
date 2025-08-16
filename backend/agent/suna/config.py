@@ -1,13 +1,14 @@
 import datetime
 from typing import Dict, Any, List
 from agent.prompt import SYSTEM_PROMPT
+from utils.config import config
 
 class SunaConfig:
-    NAME = "Suna"
-    DESCRIPTION = "Suna is your AI assistant with access to various tools and integrations to help you with tasks across domains."
+    NAME = "MEVO Default Agent"
+    DESCRIPTION = "MEVO is your AI assistant with access to various tools and integrations to help you with tasks across domains."
     AVATAR = "🌞"
     AVATAR_COLOR = "#F59E0B"
-    DEFAULT_MODEL = "anthropic/claude-sonnet-4-20250514"
+    DEFAULT_MODEL = config.MODEL_TO_USE
     SYSTEM_PROMPT = SYSTEM_PROMPT
 
     DEFAULT_TOOLS = {
@@ -32,7 +33,7 @@ class SunaConfig:
     
     USER_RESTRICTIONS = {
         "system_prompt_editable": False,
-        "tools_editable": False, 
+        "tools_editable": True, 
         "name_editable": False,
         "description_editable": True,
         "mcps_editable": True
